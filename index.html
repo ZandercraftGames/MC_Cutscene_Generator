@@ -31,28 +31,34 @@
 
 	<body>
 		<h1>Minecraft Cutscene Generator</h1>
-		<p>In this page you can create your own cutscenes for minecraft in the form of a data pack.</p>
-		<p>There are a lot of features to be added to this tool yet.<br>You'll have to be on spectator mode or flying in creative mode for the cutscene to work correctly.</p>
-		<p>To install the cutscene, press the download button and save the .zip file in the "datapacks" of your world's folder (or follow <a href="https://minecraft.gamepedia.com/Tutorials/Installing_a_data_pack" target="_blank">this guide</a>).</p>
-		<p>In order to start the cutscene run the command <a style="background-color: #CCC; padding: 2px">/function cutscene-[whatever id you chose]:start</a>.<br>To uninstall the datapack, it is recommended to run the command <a style="background-color: #CCC; padding: 2px">/function cutscene-[whatever id you chose]:uninstall</a> to delete <br>the scoreboard objectives you won't be using anymore before deleting the .zip file.</p>
-		<p>Source code available at <a href="https://github.com/Diegox6/mc_cutscene_generator" target="_blank">Github</a> - <a href="..">Back to my main page</a></p>
+		<p>This tool lets you generate custom cutscenes for your worlds and Minecraft maps using datapacks.</p>
+		<p>This tool is still in development and will require a lot more features, but it currently works quite well.<br>You'll have to be in spectator mode or flying in creative mode for the cutscenes to work correctly. This will be done automatically in a future release.</p>
+		<p>To install the cutscene, press the download button and save the .zip file to the "datapacks" folder inside your world folder (or follow <a href="https://minecraft.gamepedia.com/Tutorials/Installing_a_data_pack" target="_blank">this guide</a>).</p>
+		<p>In order to start the cutscene run the command <a style="background-color: #CCC; padding: 2px">/function cutscene-[whatever id you chose]:start</a>.</p>
+		<p>Source code available on <a href="https://github.com/ZandercraftGames/MC_Cutscene_Generator" target="_blank">Github</a>.</p>
 
-		<button onclick="generateFile()">Download cutscene datapack</button>
+		<button onclick="generateFile()">Download Cutscene Datapack</button>
 
 		<br><br>
 
+		<!-- Get the cutscene ID from the user for multi-cutscene support -->
 		<label>Cutscene ID:</label>
 		<input type="number" class="field" value="0" id="cutsceneid" />
 
 		<br><br>
 
+		<!-- Get the starting position from the user -->
 		<label>Start From (x,y,z,rx,ry):</label>
-		<input type="number" class="field" value="0" id="startx" />
-		<input type="number" class="field" value="0" id="starty" />
-		<input type="number" class="field" value="0" id="startz" />
-		<input type="number" class="field" value="0" id="startrx" />
-		<input type="number" class="field" value="0" id="startry" />
-
+		<div class="input-group">
+			<span class="input-group-text">Start From (x,y,z,rx,ry):</span>
+			<input type="number" aria-label="x" class="field form-control" value="0" id="startx" />
+			<input type="number" aria-label="y" class="field form-control" value="0" id="starty" />
+			<input type="number" aria-label="z" class="field form-control" value="0" id="startz" />
+			<input type="number" aria-label="rx" class="field form-control" value="0" id="startrx" />
+			<input type="number" aria-label="ry" class="field form-control" value="0" id="startry" />
+		</div>
+			
+		<!-- Add the input event listener to update the starting coords in the script -->
 		<script>
 			document.getElementById("startx").addEventListener("input", updateStartCoords);
 			document.getElementById("starty").addEventListener("input", updateStartCoords);
@@ -62,7 +68,8 @@
 		</script>
 
 		<br><br>
-
+		
+		<!-- New section button -->
 		<button onclick="newSection()" id="morebutton">Add new section</button>
 		
 		<!-- Bootstrap Bundle with Popper -->
