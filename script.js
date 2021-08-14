@@ -2,6 +2,7 @@ function newSection() {
 	// Create div
 	let div = document.createElement("div");
 	div.setAttribute("id", "section-"+current);
+	div.setAttribute("class", "content");
 
 	// Create title
 	let title = document.createElement("h3");
@@ -116,9 +117,9 @@ function newSection() {
 	div.appendChild(timeField);
 
 
-	document.body.insertBefore(document.createElement("hr"), document.getElementById("morebutton"));
-	document.body.insertBefore(div, document.getElementById("morebutton"));
-	document.body.insertBefore(document.createElement("br"), document.getElementById("morebutton"));
+	document.body.insertBefore(document.createElement("hr"), document.getElementById("content.morebutton"));
+	document.body.insertBefore(div, document.getElementById("content.morebutton"));
+	document.body.insertBefore(document.createElement("br"), document.getElementById("content.morebutton"));
 
 	current++;
 	updateStartCoords();
@@ -139,7 +140,7 @@ function updateStartCoords() {
 function updateFromRelativeCoords() {
 	for (let section = 0; section < current; section++)
 		for (let axis = 0; axis < 3; axis++) {
-			if (section == 0)
+			if (section === 0)
 				setFieldValue("abscoord-"+section+"-"+axis, startCoords[axis] + getFieldValue("relcoord-"+section+"-"+axis));
 			else
 				setFieldValue("abscoord-"+section+"-"+axis, getFieldValue("abscoord-"+(section-1)+"-"+axis) + getFieldValue("relcoord-"+section+"-"+axis));
@@ -150,7 +151,7 @@ function updateFromAbsoluteCoords(e) {
 	let section = parseInt(e.target.id.split("-")[1]);
 	let axis = parseInt(e.target.id.split("-")[2]);
 	for (let temp = section; temp <= section; temp++) {
-		if (temp == 0)
+		if (temp === 0)
 			setFieldValue("relcoord-"+temp+"-"+axis, e.target.value - startCoords[axis]);
 		else
 			setFieldValue("relcoord-"+temp+"-"+axis, e.target.value - getFieldValue("abscoord-"+(temp-1)+"-"+axis));
@@ -162,7 +163,7 @@ function updateFromAbsoluteCoords(e) {
 function updateFromRelativeRotations() {
 	for (let section = 0; section < current; section++)
 		for (let axis = 0; axis < 2; axis++) {
-			if (section == 0)
+			if (section === 0)
 				setFieldValue("absrot-"+section+"-"+axis, startCoords[axis+3] + getFieldValue("relrot-"+section+"-"+axis));
 			else
 				setFieldValue("absrot-"+section+"-"+axis, getFieldValue("absrot-"+(section-1)+"-"+axis) + getFieldValue("relrot-"+section+"-"+axis));
@@ -173,7 +174,7 @@ function updateFromAbsoluteRotations(e) {
 	let section = parseInt(e.target.id.split("-")[1]);
 	let axis = parseInt(e.target.id.split("-")[2]);
 	for (let temp = section; temp <= section; temp++) {
-		if (temp == 0)
+		if (temp === 0)
 			setFieldValue("relrot-"+temp+"-"+axis, e.target.value - startCoords[axis+3]);
 		else
 			setFieldValue("relrot-"+temp+"-"+axis, e.target.value - getFieldValue("absrot-"+(temp-1)+"-"+axis));

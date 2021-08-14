@@ -6,8 +6,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
 		<!-- Bootstrap -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+			  integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+				integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 		
 		<!-- Favicon Configuration -->
 		<link rel="apple-touch-icon" sizes="180x180" href="https://zandercraftgames.github.io/MC_Cutscene_Generator/assets/images/apple-touch-icon.png">
@@ -26,14 +28,19 @@
 		<script type="text/javascript" src="jszip.js"></script>
 		<script type="text/javascript" src="filesaver.js"></script>
 		<script type="text/javascript" src="script.js"></script>
-		
+
 		<title>Minecraft Cutscene Generator</title>
 		
 		<!-- Styles -->
 		<style>
 			body {
 				font: 16px consolas;
-				padding: 20px;
+				padding: 0;
+			}
+
+			.content {
+				padding-left: 20px;
+				padding-right: 20px;
 			}
 
 			.field {
@@ -43,49 +50,73 @@
 	</head>
 
 	<body>
-		<h1>Minecraft Cutscene Generator</h1>
-		<p>This tool lets you generate custom cutscenes for your worlds and Minecraft maps using datapacks.</p>
-		<p>This tool is still in development and will require a lot more features, but it currently works quite well.<br>You'll have to be in spectator mode or flying in creative mode for the cutscenes to work correctly. This will be done automatically in a future release.</p>
-		<p>To install the cutscene, press the download button and save the .zip file to the "datapacks" folder inside your world folder (or follow <a href="https://minecraft.gamepedia.com/Tutorials/Installing_a_data_pack" target="_blank">this guide</a>).</p>
-		<p>In order to start the cutscene run the command <a style="background-color: #CCC; padding: 2px">/function cutscene-[whatever id you chose]:start</a>.</p>
-		<p>Source code available on <a href="https://github.com/ZandercraftGames/MC_Cutscene_Generator" target="_blank">Github</a>.</p>
+		<nav class="navbar navbar-dark bg-dark navbar-static-top">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">
+					<img src="assets/images/favicon-32x32.png" alt="" width="32" height="32" class="d-inline-block align-text-top">
+					Minecraft Cutscene Generator
+				</a>
+			</div>
+		</nav>
 
-		<button onclick="generateFile()">Download Cutscene Datapack</button>
-
-		<br><br>
-
-		<!-- Get the cutscene ID from the user for multi-cutscene support -->
-		<label>Cutscene ID:</label>
-		<input type="number" class="field" value="0" id="cutsceneid" />
-
-		<br><br>
-
-		<!-- Get the starting position from the user -->
-		<div class="input-group">
-			<span class="input-group-text">Start From (x,y,z,rx,ry):</span>
-			<input type="number" aria-label="x" class="form-control" value="0" id="startx" />
-			<input type="number" aria-label="y" class="form-control" value="0" id="starty" />
-			<input type="number" aria-label="z" class="form-control" value="0" id="startz" />
-			<input type="number" aria-label="rx" class="form-control" value="0" id="startrx" />
-			<input type="number" aria-label="ry" class="form-control" value="0" id="startry" />
+		<div class="alert alert-secondary" role="alert">
+			This tool lets you generate custom cutscenes for your worlds and Minecraft maps using datapacks.
 		</div>
-			
-		<!-- Add the input event listener to update the starting coords in the script -->
-		<script>
-			document.getElementById("startx").addEventListener("input", updateStartCoords);
-			document.getElementById("starty").addEventListener("input", updateStartCoords);
-			document.getElementById("startz").addEventListener("input", updateStartCoords);
-			document.getElementById("startrx").addEventListener("input", updateStartCoords);
-			document.getElementById("startry").addEventListener("input", updateStartCoords);
-		</script>
 
-		<br><br>
-		
-		<!-- New section button -->
-		<button onclick="newSection()" id="morebutton">Add new section</button>
-		
+		<div class="content" id="content">
+			<p>
+				This tool is still in development and will require a lot more features, but it currently works quite well.
+				<br>You'll have to be in spectator mode or flying in creative mode for the cutscenes to work correctly.
+				This will be done automatically in a future release.
+			</p>
+			<p>
+				To install the cutscene, press the download button and save the .zip file to the "datapacks" folder
+				inside your world folder (or follow <a href="https://minecraft.gamepedia.com/Tutorials/Installing_a_data_pack"
+													   target="_blank">this guide</a>).
+			</p>
+			<p>
+				In order to start the cutscene run the command <a style="background-color: #CCC; padding: 2px">/function cutscene-[whatever id you chose]:start</a>.
+			</p>
+			<p>
+				Source code available on <a href="https://github.com/ZandercraftGames/MC_Cutscene_Generator" target="_blank">Github</a>.
+			</p>
+
+			<button onclick="generateFile()">Download Cutscene Datapack</button>
+
+			<br><br>
+
+			<!-- Get the cutscene ID from the user for multi-cutscene support -->
+			<label for="cutsceneid">Cutscene ID:</label>
+			<input type="number" class="field" value="0" id="cutsceneid" />
+
+			<br><br>
+
+			<!-- Get the starting position from the user -->
+			<div class="input-group">
+				<span class="input-group-text">Start From (x,y,z,rx,ry):</span>
+				<input type="number" aria-label="x" class="form-control" value="0" id="startx" />
+				<input type="number" aria-label="y" class="form-control" value="0" id="starty" />
+				<input type="number" aria-label="z" class="form-control" value="0" id="startz" />
+				<input type="number" aria-label="rx" class="form-control" value="0" id="startrx" />
+				<input type="number" aria-label="ry" class="form-control" value="0" id="startry" />
+			</div>
+
+			<!-- Add the input event listener to update the starting coords in the script -->
+			<script>
+				document.getElementById("startx").addEventListener("input", updateStartCoords);
+				document.getElementById("starty").addEventListener("input", updateStartCoords);
+				document.getElementById("startz").addEventListener("input", updateStartCoords);
+				document.getElementById("startrx").addEventListener("input", updateStartCoords);
+				document.getElementById("startry").addEventListener("input", updateStartCoords);
+			</script>
+
+			<br><br>
+
+			<!-- New section button -->
+			<button onclick="newSection()" id="morebutton">Add new section</button>
+		</div>
+
 		<!-- Bootstrap Bundle with Popper -->
-    		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 	</body>
-
 </html>
